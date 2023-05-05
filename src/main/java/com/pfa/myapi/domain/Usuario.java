@@ -9,24 +9,29 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.validator.constraints.Length;
+
 @Entity
 public class Usuario implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@NotEmpty(message = "Nome é obrigatório.")
+	@Length(min = 3, max = 100, message = "Nome deve ter entre 3 e 100 caracteres")
 	private String nome;
-			
+
 	@NotEmpty(message = "Login é obrigatório.")
+	@Length(min = 3, max = 100, message = "Login deve ter entre 3 e 100 caracteres")
 	private String login;
-	
+
 	@NotEmpty(message = "Senha é obrigatória.")
+	@Length(min = 3, max = 100, message = "Senha deve ter entre 3 e 100 caracteres")
 	private String senha;
-	
+
 	public Usuario() {
 		super();
 	}
@@ -87,6 +92,5 @@ public class Usuario implements Serializable {
 		Usuario other = (Usuario) obj;
 		return Objects.equals(id, other.id);
 	}
-	
 
 }
